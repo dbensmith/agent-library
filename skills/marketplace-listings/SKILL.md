@@ -5,6 +5,10 @@ description: Automates the posting of Facebook Marketplace listings, including s
 
 # Facebook Marketplace Browser Automation
 
+## Market Research and Pricing
+
+Before creating a draft, perform deep market research to suggest a competitive price for the item. The default stance on pricing is OBO (Or Best Offer) unless otherwise specified by the user. Consider pricing slightly higher than your target to leave room for negotiation.
+
 ## Browser Posting
 
 Use the create-item page: <https://www.facebook.com/marketplace/create/item>
@@ -12,8 +16,8 @@ Use the create-item page: <https://www.facebook.com/marketplace/create/item>
 1. **Navigation**: Navigate to the URL. If login is required, stop and ask the user.
 2. **Field Entry**: Fill in the title, price, category, condition, and description from the approved draft.
 3. **Photo Upload**: Use the DataTransfer injection method described below.
-4. **Drafting**: Save as a draft first.
-5. **Approval**: Present the draft listing URL to the user. Only submit after explicit approval.
+4. **Drafting**: Save as a draft first. Retrieve the URL for the saved draft listing and remember it.
+5. **Approval**: Present the draft listing URL to the user for review. Wait for the user to submit any required edits. If edits are requested, use the remembered draft listing URL to navigate back to the draft and apply the updates before finalizing or requesting approval again. This prevents accidentally creating duplicate listings. Only publish the listing after explicit approval from the user.
 
 ## Photo Upload Implementation
 
