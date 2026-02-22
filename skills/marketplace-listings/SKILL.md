@@ -6,7 +6,8 @@ description: Automates the posting of Facebook Marketplace listings, including s
 # Facebook Marketplace Browser Automation
 
 ## Browser Posting
-Use the create-item page: https://www.facebook.com/marketplace/create/item
+
+Use the create-item page: <https://www.facebook.com/marketplace/create/item>
 
 1. **Navigation**: Navigate to the URL. If login is required, stop and ask the user.
 2. **Field Entry**: Fill in the title, price, category, condition, and description from the approved draft.
@@ -15,6 +16,7 @@ Use the create-item page: https://www.facebook.com/marketplace/create/item
 5. **Approval**: Present the draft listing URL to the user. Only submit after explicit approval.
 
 ## Photo Upload Implementation
+
 To safely upload local photos without triggering OS file picker dialogs:
 
 1. **Host**: Start a temporary node server (e.g., npx http-server) in the directory containing the images.
@@ -26,12 +28,14 @@ To safely upload local photos without triggering OS file picker dialogs:
 (async () => {
   const dt = new DataTransfer();
   for (const imgName of images) {
-    const res = await fetch('http://127.0.0.1:8124/' + imgName);
+    const res = await fetch("http://127.0.0.1:8124/" + imgName);
     const blob = await res.blob();
-    const file = new File([blob], imgName, { type: 'image/jpeg' });
+    const file = new File([blob], imgName, { type: "image/jpeg" });
     dt.items.add(file);
   }
   const zone = document.querySelector('[aria-label="Add photos"]');
-  zone.dispatchEvent(new DragEvent('drop', { bubbles: true, dataTransfer: dt }));
+  zone.dispatchEvent(
+    new DragEvent("drop", { bubbles: true, dataTransfer: dt }),
+  );
 })();
 ```
