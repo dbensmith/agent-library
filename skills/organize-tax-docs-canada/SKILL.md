@@ -195,8 +195,8 @@ Allowed examples:
 - RRSP
 - TFSA
 - Rental Property
-- 123 Main St
-- Edmonton Condo
+- 123 Pacific View, Victoria
+- 789 Prairie Lane, Calgary
 - Business Name
 
 Rules:
@@ -428,12 +428,11 @@ When a field cannot be determined:
 - Year -> `Unknown Year`
 - Person -> `Review Person`
 - Bucket -> `99 Review`
-- Document Type -> `Unknown Document`
-- Issuer -> `Unknown Issuer`
+- Document Type and Issuer -> Use the provided original filename if both are unknown.
 
 Example fallback:
 
-**`Unknown Year - Review Person - 99 Review - Unknown Document - Unknown Issuer.pdf`**
+**`Unknown Year - Review Person - 99 Review - [Original Filename].pdf`**
 
 ## Special Rules
 
@@ -445,8 +444,8 @@ If the contribution period is explicit:
 
 Examples:
 
-- `2025 - Taxpayer - 04 Deductions - RRSP Receipt - RBC - Jan-Feb 2026.pdf`
-- `2025 - Spouse - 04 Deductions - RRSP Receipt - Wealthsimple - Mar-Dec 2025.pdf`
+- `2025 - Taxpayer - 04 Deductions - RRSP Receipt - Coast Capital Savings - Jan-Feb 2026.pdf`
+- `2025 - Spouse - 04 Deductions - RRSP Receipt - Desjardins - Mar-Dec 2025.pdf`
 
 ### Combined Receipts
 
@@ -496,18 +495,18 @@ For each file:
 
 ### Role-label mode
 
-- `2025 - Taxpayer - 02 Income - T4 - Suncor.pdf`
-- `2025 - Spouse - 03 Investments - T5 - RBC.pdf`
-- `2025 - Joint - 04 Deductions - Donation Receipt - United Way.pdf`
-- `2025 - Child - Emma - 05 Family - T2202 - University of Alberta.pdf`
+- `2025 - Taxpayer - 02 Income - T4 - Shopify.pdf`
+- `2025 - Spouse - 03 Investments - T5 - Assiniboine Credit Union.pdf`
+- `2025 - Joint - 04 Deductions - Donation Receipt - Red Cross Canada.pdf`
+- `2025 - Child - Baby Doe - 05 Family - T2202 - Dalhousie University.pdf`
 
 ### Full-name mode
 
-- `2025 - John Smith - 02 Income - T4 - Suncor.pdf`
-- `2025 - Jane Smith - 03 Investments - T5 - RBC.pdf`
-- `2025 - John Smith & Jane Smith - 04 Deductions - Donation Receipt - United Way.pdf`
-- `2025 - Child - Emma Smith - 05 Family - T2202 - University of Alberta.pdf`
+- `2025 - John Doe - 02 Income - T4 - Shopify.pdf`
+- `2025 - Jane Doe - 03 Investments - T5 - Assiniboine Credit Union.pdf`
+- `2025 - John Doe & Jane Doe - 04 Deductions - Donation Receipt - Red Cross Canada.pdf`
+- `2025 - Child - Baby Doe - 05 Family - T2202 - Dalhousie University.pdf`
 
 ### Fallback
 
-- `Unknown Year - Review Person - 99 Review - Unknown Document - Unknown Issuer.pdf`
+- `Unknown Year - Review Person - 99 Review - [Original Filename].pdf`
