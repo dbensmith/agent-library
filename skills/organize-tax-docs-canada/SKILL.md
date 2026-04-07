@@ -13,10 +13,10 @@ The agent must rename all files to strictly adhere to the following grammatical 
 ### Fields
 
 - **`YYYY`**: The 4-digit tax year the document applies to.
-- **`Name`**: First name of the taxpayer. Use `Name 1 & Name 2` for joint documents (e.g., `Daniel & Kim`).
+- **`Name`**: First name of the taxpayer. Use `Name 1 & Name 2` for joint documents (e.g., `John & Jane`).
 - **`Bucket`**: A numbered category (`01` through `06`) mapping to the tax preparation workflow (see below).
 - **`Document Type`**: The exact CRA form number (e.g., `T4`, `T5008`, `1042-S`) or a standardized description (e.g., `RRSP Receipt`, `Medical Summary`, `Trading Summary`).
-- **`Context`**: The specific account type, asset, business name, or custom user nickname (e.g., `Margin Long`, `Joint Save (Peanut Fund)`).
+- **`Context`**: The specific account type, asset, business name, or custom user nickname (e.g., `Margin Long`, `Joint Save (Pet Fund)`).
 - **`Issuer`**: The institution, employer, or entity that generated the document (e.g., `Wealthsimple`, `CRA`, `Canada Life`).
 - **`[Tags]`**: _Optional._ Vital metadata wrapped in parentheses at the end of the filename:
   - **RRSP Dates:** `(Mar-Dec)` or `(Jan-Feb)`.
