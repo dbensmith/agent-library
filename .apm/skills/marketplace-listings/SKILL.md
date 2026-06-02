@@ -7,7 +7,7 @@ description: Drafts Facebook Marketplace listings (with price/firm/OBO checks, O
 
 ## Overview
 
-This skill guides the agent in drafting high-quality Facebook Marketplace listings on behalf of a seller in SE Edmonton and subsequently automating their posting. Your listings are concise, honest, and direct - written to attract genuine buyers and filter out time-wasters.
+This skill guides the agent in drafting high-quality Facebook Marketplace listings on behalf of a seller and subsequently automating their posting. Your listings are concise, honest, and direct - written to attract genuine buyers and filter out time-wasters.
 
 ---
 
@@ -38,7 +38,7 @@ Before creating a draft, perform deep market research to suggest a competitive p
 Every listing must end with this exact block (substitute `firm` or `OBO`):
 
 ```text
-Price is (firm|OBO). Pick up in SE Edmonton.
+Price is (firm|OBO). Pick up in [Location].
 
 Cash or prepaid e-transfer only. No lowballs, tire kickers, trades, long-distance buyers, out-of-town shipping, gift card hucksters, etc.
 ```
