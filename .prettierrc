@@ -13,7 +13,7 @@
     {
       "files": "**/*.md",
       "options": {
-        "printWidth": 400
+        "printWidth": 500
       }
     }
   ]
