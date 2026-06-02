@@ -4,9 +4,19 @@ A centralized repository for AI agent instructions, skills, prompts, and documen
 
 ## How to Use This Library
 
+### Via APM (Recommended)
+You can consume this repository directly using the [Agent Package Manager (APM)](https://microsoft.github.io/apm/). Add the following to your project's `apm.yml`:
+
+```yaml
+dependencies:
+  apm:
+    - dbensmith/agent-library
+```
+Then run `apm install`.
+
 ### Standard Usage
-- **Instructions**: Copy content from `instructions/` into your agent's System Instructions.
-- **Skills**: Use `activate_skill [skill-name]` for any skill folder in `skills/`.
+- **Instructions**: Copy content from `.apm/instructions/` into your agent's System Instructions.
+- **Skills**: Use `activate_skill [skill-name]` for any skill folder in `.apm/skills/`.
 
 ---
 
@@ -32,8 +42,8 @@ Use directory junctions (Windows) or symlinks (macOS/Linux) to map the library f
 $LibraryPath = "Z:\agent-library" # Change to your local path
 
 # Link Skills and Instructions
-New-Item -ItemType Junction -Path "$HOME\.gemini\skills" -Value "$LibraryPath\skills"
-New-Item -ItemType Junction -Path "$HOME\.gemini\instructions" -Value "$LibraryPath\instructions"
+New-Item -ItemType Junction -Path "$HOME\.gemini\skills" -Value "$LibraryPath\.apm\skills"
+New-Item -ItemType Junction -Path "$HOME\.gemini\instructions" -Value "$LibraryPath\.apm\instructions"
 ```
 
 #### macOS / Linux
@@ -41,8 +51,8 @@ New-Item -ItemType Junction -Path "$HOME\.gemini\instructions" -Value "$LibraryP
 LIBRARY_PATH="/path/to/agent-library" # Change to your local path
 
 # Link Skills and Instructions
-ln -s "$LIBRARY_PATH/skills" "$HOME/.gemini/skills"
-ln -s "$LIBRARY_PATH/instructions" "$HOME/.gemini/instructions"
+ln -s "$LIBRARY_PATH/.apm/skills" "$HOME/.gemini/skills"
+ln -s "$LIBRARY_PATH/.apm/instructions" "$HOME/.gemini/instructions"
 ```
 
 ### 3. Configure the Global Entry Point
@@ -65,9 +75,9 @@ Create or update `~/.gemini/GEMINI.md` to provide the agent with context about t
 ---
 
 ## Directory Structure
-- `instructions/`: High-level system instructions and personas.
-- `skills/`: Tool definitions and specialized agent capabilities (each in its own folder).
-- `prompts/`: Reusable prompt templates.
+- `.apm/instructions/`: High-level system instructions and personas.
+- `.apm/skills/`: Tool definitions and specialized agent capabilities (each in its own folder).
+- `.apm/prompts/`: Reusable prompt templates.
 - `docs/`: Architecture patterns and general configuration guides.
 
 ## License

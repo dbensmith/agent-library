@@ -1,0 +1,9 @@
+{
+  "name": "agent-library",
+  "version": "0.1.0",
+  "description": "APM project for agent-library",
+  "author": {
+    "name": "Benjamin Smith"
+  },
+  "license": "MIT"
+}
