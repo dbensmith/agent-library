@@ -1,0 +1,54 @@
+lockfile_version: '1'
+generated_at: '2026-06-03T02:17:03.772381+00:00'
+apm_version: 0.16.1
+dependencies:
+- repo_url: github/awesome-copilot
+  host: github.com
+  resolved_commit: 776d84143238cb91f7242665f188887b9e8d2aa9
+  virtual_path: skills/git-commit
+  is_virtual: true
+  package_type: claude_skill
+  deployed_files:
+  - .agents/skills/git-commit
+  content_hash: sha256:2607fc60629b82b257136dd2a7a373f0a4466c0b49df7746d845d59313c99b21
+- repo_url: github/awesome-copilot
+  host: github.com
+  resolved_commit: 776d84143238cb91f7242665f188887b9e8d2aa9
+  virtual_path: skills/make-repo-contribution
+  is_virtual: true
+  package_type: claude_skill
+  deployed_files:
+  - .agents/skills/make-repo-contribution
+  content_hash: sha256:fb32b7ff09809454fa8eff8ca6404993971eef43b12ff3ccf8ced99d91b7ae92
+- repo_url: github/awesome-copilot
+  host: github.com
+  resolved_commit: 776d84143238cb91f7242665f188887b9e8d2aa9
+  virtual_path: skills/review-and-refactor
+  is_virtual: true
+  package_type: claude_skill
+  deployed_files:
+  - .agents/skills/review-and-refactor
+  content_hash: sha256:9236d06a1500089ddb46975b866e9a63478e502afe7095b1980c618678a7c7fe
+- repo_url: upstash/context7
+  host: github.com
+  resolved_commit: c436700959bf0c277aa02c57195b5a24778cf8aa
+  virtual_path: skills/find-docs
+  is_virtual: true
+  package_type: claude_skill
+  deployed_files:
+  - .agents/skills/find-docs
+  content_hash: sha256:0210767e57873317edc8b91783a2f1b74eb9bbdd2139bd14e9129e9a0bbc2dd6
+- repo_url: yldgio/codereview-skills
+  host: github.com
+  resolved_commit: f0b07716f481157609f1e3efde9f678d9911c87a
+  virtual_path: skills/gh-cli
+  is_virtual: true
+  package_type: claude_skill
+  deployed_files:
+  - .agents/skills/gh-cli
+  content_hash: sha256:abdfdd485c69d9fdfd016bf880b67b70614a30959502b4d59d532491d14b5bf8
+local_deployed_files:
+- .agents/skills/home-assistant-env
+- .agents/skills/marketplace-listings
+- .agents/skills/organize-tax-docs-canada
+- .agents/skills/uv
