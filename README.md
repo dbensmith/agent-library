@@ -5,6 +5,7 @@ A centralized repository for AI agent instructions, skills, prompts, and documen
 ## How to Use This Library
 
 ### Via APM (Recommended)
+
 You can consume this repository directly using the [Agent Package Manager (APM)](https://microsoft.github.io/apm/). Add the following to your project's `apm.yml`:
 
 ```yaml
@@ -12,9 +13,11 @@ dependencies:
   apm:
     - dbensmith/agent-library
 ```
+
 Then run `apm install`.
 
 ### Standard Usage
+
 - **Instructions**: Copy content from `.apm/instructions/` into your agent's System Instructions.
 - **Skills**: Use `activate_skill [skill-name]` for any skill folder in `.apm/skills/`.
 
@@ -25,8 +28,10 @@ Then run `apm install`.
 To make this library natively accessible to your Gemini CLI, follow these steps to link it to your global configuration.
 
 ### 1. Trust the Library Path
+
 Gemini must trust the directory where the library is located.
 Open your `trustedFolders.json` (usually in `~/.gemini/`) and add the absolute path to this repository:
+
 ```json
 {
   "C:\\Users\\YourUser": "TRUST_FOLDER",
@@ -35,9 +40,11 @@ Open your `trustedFolders.json` (usually in `~/.gemini/`) and add the absolute p
 ```
 
 ### 2. Link the Library Components
+
 Use directory junctions (Windows) or symlinks (macOS/Linux) to map the library folders into your `.gemini` directory.
 
 #### Windows (PowerShell)
+
 ```powershell
 $LibraryPath = "Z:\agent-library" # Change to your local path
 
@@ -47,6 +54,7 @@ New-Item -ItemType Junction -Path "$HOME\.gemini\instructions" -Value "$LibraryP
 ```
 
 #### macOS / Linux
+
 ```bash
 LIBRARY_PATH="/path/to/agent-library" # Change to your local path
 
@@ -56,29 +64,35 @@ ln -s "$LIBRARY_PATH/.apm/instructions" "$HOME/.gemini/instructions"
 ```
 
 ### 3. Configure the Global Entry Point
+
 Create or update `~/.gemini/GEMINI.md` to provide the agent with context about this library:
 
 ```markdown
 # Agent Context & Library
 
 ## Repository
+
 - **Agent Library**: [Path to this repo]
 - **Contains**: System instructions, reusable skills, and prompt templates.
 
 ## Instructions
+
 - Refer to the linked `instructions/` directory for task-specific personas.
 
 ## Skills
+
 - Use `activate_skill [skill-name]` for any skill located in the linked `skills/` directory.
 ```
 
 ---
 
 ## Directory Structure
+
 - `.apm/instructions/`: High-level system instructions and personas.
 - `.apm/skills/`: Tool definitions and specialized agent capabilities (each in its own folder).
 - `.apm/prompts/`: Reusable prompt templates.
 - `docs/`: Architecture patterns and general configuration guides.
 
 ## License
+
 MIT
