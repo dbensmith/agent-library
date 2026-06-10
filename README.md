@@ -23,25 +23,29 @@ Then run `apm install`.
 
 ---
 
-## Configuration: Linking Gemini to this Library
+## Configuration: Linking Antigravity to this Library
 
-To make this library natively accessible to your Gemini CLI, follow these steps to link it to your global configuration.
+To make this library natively accessible to Antigravity CLI and Antigravity IDE (Antigravity 2.0), follow these steps to link it to your global configuration.
 
 ### 1. Trust the Library Path
 
-Gemini must trust the directory where the library is located.
-Open your `trustedFolders.json` (usually in `~/.gemini/`) and add the absolute path to this repository:
+Antigravity must trust the directory where the library is located.
+Open the `settings.json` file for your Antigravity tool:
+
+- **Antigravity CLI**: `~/.gemini/antigravity-cli/settings.json`
+- **Antigravity IDE**: `~/.gemini/antigravity-ide/settings.json`
+
+Add the absolute path of this repository to the `trustedWorkspaces` array:
 
 ```json
 {
-  "C:\\Users\\YourUser": "TRUST_FOLDER",
-  "Z:\\agent-library": "TRUST_FOLDER"
+  "trustedWorkspaces": ["C:\\Users\\YourUser\\some-workspace", "Z:\\agent-library"]
 }
 ```
 
 ### 2. Link the Library Components
 
-Use directory junctions (Windows) or symlinks (macOS/Linux) to map the library folders into your `.gemini` directory.
+Use directory junctions (Windows) or symlinks (macOS/Linux) to map the library folders into your global Antigravity configuration directory `.gemini`.
 
 #### Windows (PowerShell)
 
@@ -65,7 +69,7 @@ ln -s "$LIBRARY_PATH/.apm/instructions" "$HOME/.gemini/instructions"
 
 ### 3. Configure the Global Entry Point
 
-Create or update `~/.gemini/GEMINI.md` to provide the agent with context about this library:
+Create or update the global entry point file `~/.gemini/GEMINI.md` (which is loaded by both Antigravity CLI and IDE) to provide the agent with context about this library:
 
 ```markdown
 # Agent Context & Library
