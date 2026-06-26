@@ -1,0 +1,215 @@
+{
+  "context_envelope": {
+    "meta": {
+      "plan_id": "20260625-apm-readiness-review",
+      "created_at": "2026-06-25T18:44:00Z",
+      "last_updated": "2026-06-25T20:15:00Z",
+      "version": 4,
+      "previous_version_fields_changed": ["meta", "learnings"]
+    },
+    "tech_stack": [
+      {
+        "name": "APM CLI",
+        "version": "0.16.1",
+        "usage_context": "Package manager for agent context; used to compile, pack, install packages. Referenced in apm.lock.yaml (apm_version: 0.16.1) and AGENTS.md (APM Version: 0.16.1).",
+        "config_files": ["apm.yml", "apm.lock.yaml"]
+      }
+    ],
+    "conventions": [
+      "APM .apm/ directory layout: skills/, instructions/, prompts/, agents/ subdirectories for primitives",
+      "Git tags follow v{version} pattern (e.g., v0.1.0) for APM version pinning",
+      "apm compile generates AGENTS.md and per-target output from .apm/ source",
+      "apm pack produces build/<name>-<version>/ bundle and marketplace.json",
+      "APM lockfile (apm.lock.yaml) pins resolved commits and content hashes",
+      "AGENTS.md is auto-generated — do not edit manually (stated in file header)",
+      "Skills: one subdirectory per skill under .apm/skills/, each with SKILL.md"
+    ],
+    "constraints": {
+      "hard": [
+        "apm.yml must have name and version fields",
+        ".apm/ directory must exist with at least one primitive subdirectory for .apm/ package type",
+        "Git tags are required for version pinning (latest, release, sha)",
+        "apm compile must succeed to produce AGENTS.md and build output",
+        "AGENTS.md is generated — source primitives live under .apm/"
+      ],
+      "soft": [
+        "plugin.json recommended for plugin metadata",
+        "apm.yml.description recommended for apm view / apm search",
+        "docs/ directory recommended for architecture/contribution docs",
+        "CI/CD pipeline recommended for automated validation and release"
+      ],
+      "compatibility": [
+        "Targets declared in apm.yml: copilot, gemini, opencode",
+        "apm compile -t copilot writes .github/copilot-instructions.md",
+        "Consumer install via: apm install dbensmith/agent-library"
+      ],
+      "security_requirements": []
+    },
+    "architecture_snapshot": {
+      "key_dirs": [
+        ".apm/skills/ — 4 local skills: home-assistant-env, marketplace-listings, organize-tax-docs-canada, uv",
+        ".apm/instructions/ — MISSING (does not exist)",
+        ".apm/prompts/ — MISSING (does not exist)",
+        ".apm/agents/ — MISSING (does not exist)",
+        ".agents/skills/ — Deployed runtime skills (local + 5 remote APM deps)",
+        "build/agent-library-0.1.0/ — Prior build output with instructions/, agents/, skills/, plugin.json",
+        ".github/ — MISSING (no CI/CD)",
+        "docs/ — MISSING"
+      ],
+      "patterns": [
+        "APM .apm/ directory layout (package type: .apm/ directory)",
+        "APM lockfile-managed dependency resolution",
+        "Auto-generated AGENTS.md from apm compile",
+        "Build output in build/<name>-<version>/"
+      ],
+      "key_components": [
+        {
+          "name": "apm.yml",
+          "location": "/apm.yml",
+          "responsibility": ["Package manifest: name, version, 5 remote APM deps, 3 targets, includes: auto"]
+        },
+        {
+          "name": "apm.lock.yaml",
+          "location": "/apm.lock.yaml",
+          "responsibility": ["Pins resolved commits and content hashes for all dependencies"]
+        },
+        {
+          "name": "plugin.json",
+          "location": "/plugin.json",
+          "responsibility": ["Plugin metadata: name, version, author, license"]
+        },
+        {
+          "name": "AGENTS.md",
+          "location": "/AGENTS.md",
+          "responsibility": ["Auto-generated entry point; references .apm/instructions/library.instructions.md which does NOT exist in source"]
+        },
+        {
+          "name": "build output",
+          "location": "/build/agent-library-0.1.0/",
+          "responsibility": ["Prior apm compile output; contains files not in .apm/ source (instructions/, agents/)"]
+        }
+      ]
+    },
+    "research_digest": {
+      "relevant_files": [
+        {
+          "path": "apm.yml",
+          "purpose": ["Package manifest — validate against APM manifest schema"],
+          "confidence": 1.0
+        },
+        {
+          "path": "apm.lock.yaml",
+          "purpose": ["Lockfile — verify deployed files match .agents/ tree"],
+          "confidence": 1.0
+        },
+        {
+          "path": "plugin.json",
+          "purpose": ["Plugin metadata — validate conformance"],
+          "confidence": 1.0
+        },
+        {
+          "path": "AGENTS.md",
+          "purpose": ["Auto-generated entry — trace source refs back to .apm/; flag missing source"],
+          "confidence": 1.0
+        },
+        {
+          "path": "README.md",
+          "purpose": ["Aspirational docs — check claimed .apm/prompts/, docs/ dirs exist"],
+          "confidence": 1.0
+        },
+        {
+          "path": "build/agent-library-0.1.0/",
+          "purpose": ["Prior build — diff against .apm/ source to find source/build mismatch"],
+          "confidence": 1.0
+        },
+        {
+          "path": ".apm/",
+          "purpose": ["Source primitives — inventory only has skills/ subdir"],
+          "confidence": 1.0
+        },
+        {
+          "path": ".agents/skills/",
+          "purpose": ["Deployed runtime tree — 9 skill dirs (4 local + 5 remote deps)"],
+          "confidence": 1.0
+        }
+      ],
+      "patterns_found": [
+        {
+          "name": "APM .apm/ directory layout",
+          "category": "package_type",
+          "confidence": 1.0,
+          "example_location": [".apm/skills/"]
+        },
+        {
+          "name": "APM lockfile dependency resolution",
+          "category": "dependency_management",
+          "confidence": 1.0,
+          "example_location": ["apm.lock.yaml"]
+        },
+        {
+          "name": "Source/build mismatch",
+          "category": "gap",
+          "confidence": 1.0,
+          "example_location": ["build/agent-library-0.1.0/instructions/ exists but .apm/instructions/ does not"]
+        }
+      ],
+      "gotchas": [
+        {
+          "text": "AGENTS.md references .apm/instructions/library.instructions.md which does not exist in source — apm compile may fail or produce broken output",
+          "confidence": 0.95
+        },
+        {
+          "text": "Zero git tags — version pinning (latest, release, sha) is completely non-functional",
+          "confidence": 1.0
+        },
+        {
+          "text": "README.md claims .apm/prompts/ and docs/ exist but neither directory is present",
+          "confidence": 1.0
+        },
+        {
+          "text": "Build directory has agents/marketplace-listings.agent.md but no .apm/agents/ source — unclear if agent is intended to ship",
+          "confidence": 0.9
+        },
+        {
+          "text": "Current work is on feature branch 'humble-spider'; main branch state may differ from working tree",
+          "confidence": 0.8
+        }
+      ]
+    },
+    "prior_decisions": [
+      {
+        "decision": "Repository migrated to APM format (commit efd7a77: 'refactor(apm): migrate repository structure to APM format')",
+        "rationale": ["Adopted apm.yml, .apm/ layout, apm.lock.yaml"],
+        "confidence": 1.0
+      },
+      {
+        "decision": "Skills migrated from local to remote APM dependencies (commit ee8384e: 'chore: migrate skills to remote APM dependencies (#1)')",
+        "rationale": ["5 skills now declared as apm dependencies instead of vendored locally"],
+        "confidence": 1.0
+      },
+      {
+        "decision": "AGENTS.md is auto-generated by apm compile, not hand-authored",
+        "rationale": ["File header states: 'Generated by APM CLI from distributed .apm/ primitives'"],
+        "confidence": 1.0
+      }
+    ],
+    "reuse_notes": [
+      { "path": "apm.yml", "trust": "high" },
+      { "path": "apm.lock.yaml", "trust": "high" },
+      { "path": "plugin.json", "trust": "high" },
+      { "path": "AGENTS.md", "trust": "high" },
+      { "path": ".apm/skills/", "trust": "high" },
+      { "path": "build/agent-library-0.1.0/", "trust": "low" }
+    ],
+    "learnings": [
+      "Readiness report synthesized 13 gaps into single NO-GO verdict: zero git tags blocks version-pinned install",
+      "GAP-01 (CRITICAL) is trivially fixable (git tag); the harder gaps are GAP-02/GAP-03 (missing source primitives)",
+      "Pre-flight checklist validated 8 conditions; 4 are NO, 2 UNVERIFIED, 1 PARTIAL — only 1 fully met today",
+      "Build directory is stale artifact: 8 skills vs 9 in lockfile; instructions+agents present in build but absent from .apm/ source",
+      "Phase 1 remediation (GAP-01→GAP-02+GAP-03→GAP-04) is the minimum viable path to a release-capable package",
+      "PRD produced 7 BDD action items covering all 13 gaps; critical path is Actions 2+3→4→7 (~30 min serial work)",
+      "All 13 gaps mapped to action items: GAP-01→A1, GAP-02→A2, GAP-03→A3, GAP-04/GAP-10→A4, GAP-06/GAP-08/GAP-09→A5, GAP-05/GAP-12/GAP-13→A6, GAP-07→A7",
+      "Definition of Done: 4 install modes (latest, tag #v0.1.0, SHA, semver range) must all succeed; 12-item pre-flight checklist; one-shot verification command chain"
+    ]
+  }
+}

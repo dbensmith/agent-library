@@ -1,0 +1,341 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# PLAN METADATA
+# ═══════════════════════════════════════════════════════════════════════════
+plan_id: 20260625-apm-readiness-review
+objective: >
+  Conduct a comprehensive review of dbensmith/agent-library's readiness to serve
+  as an APM source that downstream consumers can install via `apm install
+  dbensmith/agent-library`. Produce a readiness report with gap analysis and a
+  PRD containing BDD-style action items starting with: "As a user I should be
+  able to run `apm install @repo/agent-library` and have it work automatically
+  with latest and release version and sha pinning".
+created_at: '2026-06-25T18:44:00Z'
+created_by: gem-planner
+status: completed
+tldr: |
+  5 tasks across 4 waves. Wave 1: research APM packaging spec requirements.
+  Wave 2: audit repo against spec (depends on research digest). Wave 3:
+  synthesize readiness report + produce PRD with BDD action items. Wave 4:
+  verify correctness, completeness, and spec alignment of report and PRD
+  outputs. All outputs land in docs/plan/20260625-apm-readiness-review/.
+
+# ═══════════════════════════════════════════════════════════════════════════
+# PLAN-LEVEL METRICS
+# ═══════════════════════════════════════════════════════════════════════════
+plan_metrics:
+  wave_1_task_count: 1
+  total_dependencies: 7
+  risk_score: low
+quality_warnings: []
+
+# ═══════════════════════════════════════════════════════════════════════════
+# PLANNING ANALYSIS (MEDIUM complexity)
+# ═══════════════════════════════════════════════════════════════════════════
+open_questions: []
+
+assumptions:
+  - >
+    APM package type is `.apm/` directory layout (not HYBRID SKILL.md, not skill collection, not hook-only, not plugin-only)
+  - >
+    Consumers will `apm install` directly from GitHub (dbensmith/agent-library), no marketplace block required
+  - >
+    Git tags must follow `v{version}` pattern (e.g., `v0.1.0`) for APM version pinning to work
+  - >
+    The `main` branch at `dbensmith/agent-library` is the canonical release branch
+  - >
+    `apm compile` is expected to succeed and produce deterministic output for all declared targets (copilot, gemini, opencode)
+  - >
+    The README is aspirational; it documents directories that don't yet exist (`.apm/prompts/`, `docs/`)
+  - >
+    No `apm-policy.yml` is required for this repo since it's a public open-source package without enterprise governance
+  - >
+    The `build/agent-library-0.1.0/instructions/library.instructions.md` exists in build output but `.apm/instructions/` source directory is absent. We assume the build was produced by a prior `apm compile` that succeeded with special handling for missing source directories, or the build is stale. Without repo owner confirmation, assume `apm compile` will fail on a fresh run and treat the missing `.apm/instructions/` directory as a HIGH-severity gap.
+  - >
+    The `build/agent-library-0.1.0/agents/marketplace-listings.agent.md` exists but no corresponding `.apm/agents/` source directory exists. We assume this agent is intended to ship as part of this package but its source location is unknown. Without repo owner confirmation, treat the missing `.apm/agents/` source directory as a HIGH-severity gap.
+
+# ═══════════════════════════════════════════════════════════════════════════
+# TASKS
+# ═══════════════════════════════════════════════════════════════════════════
+tasks:
+  # ─────────────────────────────────────────────────────────────────────────
+  - id: research-apm-packaging-spec
+    title: Research APM packaging specification requirements
+    description: >
+      Research the APM packaging specification to produce a comprehensive,
+      referenced checklist of requirements a repo must satisfy to be
+      installable via `apm install dbensmith/agent-library` with version
+      pinning (`latest`, release tag like `#v0.1.0`, SHA commit pinning).
+      Cover: required files (apm.yml, plugin.json), required directories
+      (`.apm/skills/`, `.apm/instructions/`, `.apm/prompts/`, `.apm/agents/`),
+      `apm compile` behavior, `apm pack` output, `apm preview` validation,
+      git tag conventions, and CI/CD expectations per the producer ramp
+      documentation. Output a structured research digest with per-requirement
+      source citations (URLs to microsoft.github.io/apm/).
+    wave: 1
+    agent: gem-researcher
+    status: completed
+    covers:
+      - APM producer ramp requirements
+      - Package anatomy and primitive types
+      - Version pinning semantics (latest, release tag, SHA)
+      - Git tag conventions for APM
+      - apm compile / apm pack / apm preview validation gates
+      - CI/CD expectations for APM packages
+    dependencies: []
+    conflicts_with: []
+    context_files:
+      - path: apm.yml
+        description: Current package manifest — compare against spec requirements
+      - path: README.md
+        description: Aspirational docs — cross-reference claimed vs actual structure
+      - path: plugin.json
+        description: Plugin metadata — verify spec conformance
+      - path: build/agent-library-0.1.0/
+        description: Existing build output — reverse-engineer what apm compile produced
+    acceptance_criteria:
+      - Research digest includes a numbered checklist of ≥10 verifiable APM package requirements
+      - Each requirement cites a specific APM documentation URL (microsoft.github.io/apm/...)
+      - 'Digest covers: manifest schema, directory layout, primitive types, compile, pack, publish, git tags, CI'
+      - Digest distinguishes MUST (blocking) from SHOULD (advisory) requirements
+      - Output saved to docs/plan/20260625-apm-readiness-review/research-digest.md
+    success_criteria:
+      - File docs/plan/20260625-apm-readiness-review/research-digest.md exists and is non-empty
+      - Digest contains ≥10 requirements with source URLs
+    tech_stack: []
+    test_coverage: null
+    handoff:
+      do_not_reinvestigate:
+        - APM homepage at microsoft.github.io/apm/
+        - Producer ramp at microsoft.github.io/apm/producer/
+        - Package types at microsoft.github.io/apm/reference/package-types/
+        - Publish guide at microsoft.github.io/apm/producer/publish-to-a-marketplace/
+        - Versioning strategies at microsoft.github.io/apm/producer/versioning-strategies/
+        - APM README at github.com/microsoft/apm
+      required_test_first: null
+      target_files:
+        - docs/plan/20260625-apm-readiness-review/research-digest.md
+      minimal_change: Write research digest once; no codebase modifications.
+      acceptance_checks:
+        - File exists at target path
+        - Contains ≥10 numbered requirements
+        - Each requirement has a URL citation
+
+  # ─────────────────────────────────────────────────────────────────────────
+  - id: audit-repo-apm-readiness
+    title: Audit repository against APM packaging requirements
+    description: >
+      Perform a file-by-file and directory-by-directory audit of the
+      dbensmith/agent-library repository against the APM packaging
+      requirements documented in the research digest (Task
+      research-apm-packaging-spec). Compare the `.apm/` source tree against
+      the `build/agent-library-0.1.0/` output tree to identify discrepancies.
+      Verify git state: tags, branches, remotes, recent commits. Check
+      manifest conformance of apm.yml and plugin.json. Identify every gap
+      between actual state and APM spec requirements. Produce a structured
+      gap-analysis document with severity ratings and fix guidance.
+
+      Known facts (no need to re-verify): .apm/ contains only skills/
+      subdirectory; zero git tags exist; no .github/workflows/ directory;
+      no docs/ directory; no .gem-team.yaml; current branch is
+      'humble-spider' (feature), main exists on remote; build/ directory
+      contains instructions/ and agents/ files not present in .apm/ source.
+    wave: 2
+    agent: gem-reviewer
+    status: completed
+    covers:
+      - .apm/ directory completeness (skills/, instructions/, prompts/, agents/)
+      - Source vs build directory comparison
+      - apm.yml and plugin.json schema conformance
+      - Git tag inventory (or lack thereof)
+      - Main vs feature branch state
+      - Missing infrastructure (.github/workflows/, docs/, .gem-team.yaml)
+      - Config file inventory (.editorconfig, .prettierrc, .commitlintrc.json, .markdownlint.jsonc)
+      - AGENTS.md correctness (does it reference existing files?)
+      - apm.lock.yaml correctness (deployed files vs actual .agents/ tree)
+    dependencies:
+      - research-apm-packaging-spec
+    conflicts_with: []
+    context_files:
+      - path: apm.yml
+        description: Package manifest — validate schema conformance
+      - path: apm.lock.yaml
+        description: Lockfile — verify deployed files exist on disk
+      - path: plugin.json
+        description: Plugin metadata — validate schema conformance
+      - path: AGENTS.md
+        description: Generated entry point — trace source references back to .apm/
+      - path: README.md
+        description: Aspirational docs — check claimed directories exist
+      - path: build/agent-library-0.1.0/
+        description: Prior build output — diff against .apm/ source
+      - path: .apm/
+        description: Source primitives tree — inventory all contents
+      - path: .agents/
+        description: Deployed runtime tree — verify lockfile consistency
+    acceptance_criteria:
+      - Gap analysis lists every discrepancy between actual repo state and APM spec
+      - 'Each gap has a severity rating using this rubric: CRITICAL=blocks `apm install`, HIGH=blocks `apm compile`, MEDIUM=spec violation with workaround, LOW=cosmetic/non-blocking'
+      - Each gap includes rationale explaining why it meets that severity level
+      - Source vs build comparison documented (which files exist only in build/)
+      - 'Git state documented: zero tags confirmed, current branch, main status, remote URL'
+      - apm.yml schema checked against known required/optional fields
+      - plugin.json schema checked
+      - Assumptions about unresolved questions (missing .apm/instructions/ source vs build output, missing .apm/agents/ source) are explicitly stated in the gap-analysis.md introduction
+      - Output saved to docs/plan/20260625-apm-readiness-review/gap-analysis.md
+    success_criteria:
+      - File docs/plan/20260625-apm-readiness-review/gap-analysis.md exists and is non-empty
+      - Document contains ≥8 identified gaps with severity ratings using the defined rubric
+      - Source/build diff documented
+      - Git tag count confirmed as zero
+    requires_review: false
+    review_depth: standard
+    review_security_sensitive: false
+
+  # ─────────────────────────────────────────────────────────────────────────
+  - id: write-readiness-report
+    title: Synthesize APM readiness report
+    description: >
+      Synthesize the research digest (Task research-apm-packaging-spec)
+      and gap analysis (Task audit-repo-apm-readiness) into a
+      comprehensive readiness report. The report must: (1) state a
+      clear GO/NO-GO verdict on whether dbensmith/agent-library is
+      ready for `apm install dbensmith/agent-library` with version
+      pinning, (2) summarize each gap with severity, impact, and
+      fix cost estimate (effort level: trivial/easy/medium/hard),
+      (3) prioritize gaps into a remediation roadmap, (4) include
+      a pre-flight checklist of what must be true before a consumer
+      can successfully run `apm install dbensmith/agent-library#v0.1.0`.
+    wave: 3
+    agent: gem-documentation-writer
+    status: completed
+    covers:
+      - Readiness verdict (GO/NO-GO)
+      - Gap summary with severity, impact, effort
+      - Prioritized remediation roadmap
+      - Pre-flight consumer install checklist
+    dependencies:
+      - research-apm-packaging-spec
+      - audit-repo-apm-readiness
+    conflicts_with: []
+    context_files:
+      - path: docs/plan/20260625-apm-readiness-review/research-digest.md
+        description: Task research-apm-packaging-spec output — requirements checklist
+      - path: docs/plan/20260625-apm-readiness-review/gap-analysis.md
+        description: Task audit-repo-apm-readiness output — gap inventory
+    acceptance_criteria:
+      - Report opens with unambiguous GO/NO-GO verdict
+      - Each gap from gap-analysis.md is summarized with severity, impact description, and effort estimate
+      - Gaps are ordered into a remediation roadmap (what to fix first, second, etc.)
+      - Pre-flight checklist enumerates every condition that must hold for `apm install dbensmith/agent-library#v0.1.0` to succeed
+      - Output saved to docs/plan/20260625-apm-readiness-review/readiness-report.md
+    success_criteria:
+      - File docs/plan/20260625-apm-readiness-review/readiness-report.md exists and is non-empty
+      - Contains explicit GO or NO-GO verdict in the first section
+      - All gaps from gap-analysis.md are referenced
+      - Pre-flight checklist has ≥5 items
+    task_type: documentation
+    audience: stakeholders
+    coverage_matrix:
+      - APM manifest conformance
+      - Directory structure completeness
+      - Version pinning readiness (git tags)
+      - CI/CD automation
+      - Consumer install path
+
+  # ─────────────────────────────────────────────────────────────────────────
+  - id: write-prd-bdd-actions
+    title: Produce PRD with BDD-style action items
+    description: >
+      Produce a Product Requirements Document containing BDD-style
+      action items that, when completed, will make dbensmith/agent-library
+      fully APM-installable. Every action item must start with: "As a
+      user I should be able to run `apm install dbensmith/agent-library`
+      and have it work automatically with latest and release version and
+      sha pinning". Action items decompose this single user story into
+      concrete, independently verifiable sub-requirements covering:
+      git tags, missing directories, CI/CD, testing, documentation,
+      and manifest correctness. Each action item maps to at least one
+      gap from the gap analysis.
+    wave: 3
+    agent: gem-documentation-writer
+    status: completed
+    covers:
+      - BDD action items derived from gap analysis
+      - Version pinning user stories (latest, release tag, SHA)
+      - Infrastructure requirements (CI, tests, docs)
+      - Directory structure requirements
+    dependencies:
+      - research-apm-packaging-spec
+      - audit-repo-apm-readiness
+    conflicts_with: []
+    context_files:
+      - path: docs/plan/20260625-apm-readiness-review/research-digest.md
+        description: Task research-apm-packaging-spec output — spec requirements to fulfill
+      - path: docs/plan/20260625-apm-readiness-review/gap-analysis.md
+        description: Task audit-repo-apm-readiness output — gaps to address
+    acceptance_criteria:
+      - 'Every action item starts with the required BDD prefix: "As a user I should be able to run `apm install dbensmith/agent-library` and have it work automatically with latest and release version and sha pinning"'
+      - 'Action items decompose into sub-requirements covering: git tags, .apm/ directories, CI/CD, tests, docs, manifest'
+      - Each action item maps to ≥1 gap from gap-analysis.md
+      - Each action item has a clear verification criterion (how to confirm it's done)
+      - Output saved to docs/plan/20260625-apm-readiness-review/PRD.md
+    success_criteria:
+      - File docs/plan/20260625-apm-readiness-review/PRD.md exists and is non-empty
+      - ≥6 BDD action items with the required prefix
+      - Each action item references ≥1 gap from gap-analysis.md
+      - Each action item has a verification criterion
+    task_type: prd
+    audience: stakeholders
+    coverage_matrix:
+      - Git tag creation and versioning
+      - Directory structure completion (.apm/instructions/, .apm/prompts/, .apm/agents/)
+      - CI/CD pipeline setup
+      - Test infrastructure
+      - Documentation (README accuracy, docs/ directory)
+      - Manifest validation and compile verification
+
+  # ─────────────────────────────────────────────────────────────────────────
+  - id: review-outputs
+    title: Verify readiness report and PRD outputs
+    description: >
+      Review the APM readiness report (readiness-report.md) and PRD
+      (PRD.md) produced by the documentation tasks. Validate correctness
+      (are claims supported by the research digest and gap analysis?),
+      completeness (do all gaps from gap-analysis.md appear in the report?
+      do all required PRD sections exist?), and spec alignment (do BDD
+      action items correctly reference APM spec requirements?). Flag any
+      inconsistencies, omissions, or errors for correction. Document the
+      review verdict (approved or list of issues to fix).
+    wave: 4
+    agent: gem-critic
+    status: completed
+    covers:
+      - Cross-validation of readiness-report.md against research-digest.md and gap-analysis.md
+      - Cross-validation of PRD.md against research-digest.md and gap-analysis.md
+      - BDD action item traceability to gaps
+      - GO/NO-GO verdict justification review
+      - Pre-flight checklist completeness verification
+    dependencies:
+      - write-readiness-report
+      - write-prd-bdd-actions
+    conflicts_with: []
+    context_files:
+      - path: docs/plan/20260625-apm-readiness-review/readiness-report.md
+        description: Output of write-readiness-report — verify correctness and completeness
+      - path: docs/plan/20260625-apm-readiness-review/PRD.md
+        description: Output of write-prd-bdd-actions — verify BDD alignment and gap coverage
+      - path: docs/plan/20260625-apm-readiness-review/research-digest.md
+        description: Source of truth for APM spec requirements
+      - path: docs/plan/20260625-apm-readiness-review/gap-analysis.md
+        description: Source of truth for identified gaps
+    acceptance_criteria:
+      - Readiness-report.md GO/NO-GO verdict is justified by evidence from gap-analysis.md
+      - All gaps from gap-analysis.md appear in readiness-report.md gap summary
+      - PRD.md contains ≥6 BDD action items with the required prefix
+      - Each PRD action item maps to ≥1 documented gap
+      - No factual inconsistencies between outputs and source documents
+      - Review findings documented in docs/plan/20260625-apm-readiness-review/output-review.md (approval or list of issues to fix)
+    success_criteria:
+      - File docs/plan/20260625-apm-readiness-review/output-review.md exists and is non-empty
+      - All outputs are internally consistent with source documents
+      - Review clearly states whether outputs are approved or lists actionable fixes
