@@ -1,0 +1,48 @@
+# APM CI Pipeline
+#
+# Automatically validates APM package integrity on every push and pull request.
+# Runs structural validation, drift/unicode auditing, and tree-cleanliness checks.
+#
+# APM CLI installation:
+# The npm package name is assumed to be @anthropic-ai/apm. This is the standard
+# naming convention for Anthropic's Package Manager CLI. If unavailable, `npx
+# @anthropic-ai/apm` can be used as a fallback (auto-installs on first run).
+
+name: APM CI
+
+on:
+  push:
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install APM CLI
+        run: npm install -g @anthropic-ai/apm
+
+      - name: Validate compilation
+        run: apm compile --validate
+
+      - name: Audit for drift and hidden issues
+        run: apm audit --ci
+
+      - name: Check pack cleanliness
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: apm pack --check-clean
