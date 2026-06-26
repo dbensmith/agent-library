@@ -4,9 +4,12 @@
 # Runs structural validation, drift/unicode auditing, and tree-cleanliness checks.
 #
 # APM CLI installation:
-# The npm package name is assumed to be @anthropic-ai/apm. This is the standard
-# naming convention for Anthropic's Package Manager CLI. If unavailable, `npx
-# @anthropic-ai/apm` can be used as a fallback (auto-installs on first run).
+# Research confirmed there is NO official npm package for Microsoft APM. The npm
+# package "apm" (v1.0.2) is an unrelated "Actions Per Minute" tool. The correct
+# Microsoft APM CLI is a Python package installed via pip ("pip install apm-cli").
+# See: https://microsoft.github.io/apm/integrations/ci-cd/
+#
+# Node.js LTS is included per requirements; APM itself is Python-based.
 
 name: APM CI
 
@@ -29,13 +32,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js 20
+      - name: Setup Node.js LTS
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 'lts/*'
 
       - name: Install APM CLI
-        run: npm install -g @anthropic-ai/apm
+        run: pip install apm-cli
 
       - name: Validate compilation
         run: apm compile --validate
