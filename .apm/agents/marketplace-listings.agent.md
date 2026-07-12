@@ -66,4 +66,4 @@ Includes specific rules for Electronics, Clothing, Vehicles (Bank Draft only), a
 
 ## Edge Cases
 
-Handles "Make an Offer", Multi-item lots, Bundles, and Free items ().
+Handles "Make an Offer", Multi-item lots, Bundles, and Free items.
