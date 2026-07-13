@@ -1,6 +1,6 @@
 name: agent-library
 version: 0.1.0
-description: APM project for agent-library
+description: Centralized library of AI agent instructions, skills, and tool definitions for copilot, gemini, opencode, and compatible targets.
 author: dbensmith
 dependencies:
   apm:
@@ -13,8 +13,6 @@ dependencies:
 includes: auto
 devDependencies:
   apm: []
-scripts: {}
+scripts: { start: apm compile && echo 'agent-library ready. Skills in .agents/skills/' }
 targets:
-  - copilot
-  - gemini
-  - opencode
+  - all
