@@ -1,11 +1,11 @@
 lockfile_version: '1'
-generated_at: '2026-07-16T15:52:10.071906+00:00'
+generated_at: '2026-07-16T16:20:34.309880+00:00'
 apm_version: 0.25.0
 dependencies:
 - repo_url: github/awesome-copilot
   name: awesome-copilot
   host: github.com
-  resolved_commit: 776d84143238cb91f7242665f188887b9e8d2aa9
+  resolved_commit: fb80ec4f215e8a96dfdc80f674cabcda36ccd01a
   version: unknown
   virtual_path: skills/git-commit
   is_virtual: true
@@ -22,7 +22,7 @@ dependencies:
 - repo_url: github/awesome-copilot
   name: awesome-copilot
   host: github.com
-  resolved_commit: 776d84143238cb91f7242665f188887b9e8d2aa9
+  resolved_commit: fb80ec4f215e8a96dfdc80f674cabcda36ccd01a
   version: unknown
   virtual_path: skills/make-repo-contribution
   is_virtual: true
@@ -47,7 +47,7 @@ dependencies:
 - repo_url: github/awesome-copilot
   name: awesome-copilot
   host: github.com
-  resolved_commit: 776d84143238cb91f7242665f188887b9e8d2aa9
+  resolved_commit: fb80ec4f215e8a96dfdc80f674cabcda36ccd01a
   version: unknown
   virtual_path: skills/review-and-refactor
   is_virtual: true
@@ -64,7 +64,7 @@ dependencies:
 - repo_url: upstash/context7
   name: context7
   host: github.com
-  resolved_commit: c436700959bf0c277aa02c57195b5a24778cf8aa
+  resolved_commit: eb7ac502f6e83692363375d3088d550afa298a60
   version: unknown
   virtual_path: skills/find-docs
   is_virtual: true
@@ -75,9 +75,9 @@ dependencies:
   - .claude/skills/find-docs
   - .claude/skills/find-docs/SKILL.md
   deployed_file_hashes:
-    .agents/skills/find-docs/SKILL.md: sha256:a6483e5c3f37fb1659f4963926a78b97d4e1632f75f9bcc2bbc8a5698253de35
-    .claude/skills/find-docs/SKILL.md: sha256:a6483e5c3f37fb1659f4963926a78b97d4e1632f75f9bcc2bbc8a5698253de35
-  content_hash: sha256:0210767e57873317edc8b91783a2f1b74eb9bbdd2139bd14e9129e9a0bbc2dd6
+    .agents/skills/find-docs/SKILL.md: sha256:d6db91aa44b04ccfa058a59c0414856884a7af8ab9a9177ee8f76be3ebe4b948
+    .claude/skills/find-docs/SKILL.md: sha256:d6db91aa44b04ccfa058a59c0414856884a7af8ab9a9177ee8f76be3ebe4b948
+  content_hash: sha256:a6ef6cee00e9ae9b18dce7133edc403d0ba8750ef1ac5f02af80431e060dd007
 deployments:
 - kind: project-relative
   target: agents
@@ -96,7 +96,7 @@ deployments:
   owners:
   - upstash/context7/skills/find-docs
   active_owner: upstash/context7/skills/find-docs
-  content_hash: sha256:a6483e5c3f37fb1659f4963926a78b97d4e1632f75f9bcc2bbc8a5698253de35
+  content_hash: sha256:d6db91aa44b04ccfa058a59c0414856884a7af8ab9a9177ee8f76be3ebe4b948
 - kind: project-relative
   target: agents
   value: .agents/skills/gh-github-workflow
@@ -294,7 +294,7 @@ deployments:
   owners:
   - upstash/context7/skills/find-docs
   active_owner: upstash/context7/skills/find-docs
-  content_hash: sha256:a6483e5c3f37fb1659f4963926a78b97d4e1632f75f9bcc2bbc8a5698253de35
+  content_hash: sha256:d6db91aa44b04ccfa058a59c0414856884a7af8ab9a9177ee8f76be3ebe4b948
 - kind: project-relative
   target: claude
   value: .claude/skills/gh-github-workflow
