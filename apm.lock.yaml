@@ -270,6 +270,15 @@ deployments:
   content_hash: sha256:95b48ed4b137777ddc87b77cb0873ed7f485141a517825e71af1a984cf5a6cd6
 - kind: project-relative
   target: claude
+  value: .claude/agents/marketplace-listings.md
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:eb4758f3183ab6a481e1c1c2b21d9fd673c782de31bf3cdca409b1ea7e79a9c1
+- kind: project-relative
+  target: claude
   value: .claude/skills/find-docs
   runtime: null
   scope: project
@@ -457,6 +466,15 @@ deployments:
   - github/awesome-copilot/skills/review-and-refactor
   active_owner: github/awesome-copilot/skills/review-and-refactor
   content_hash: sha256:95b48ed4b137777ddc87b77cb0873ed7f485141a517825e71af1a984cf5a6cd6
+- kind: project-relative
+  target: opencode
+  value: .opencode/agents/marketplace-listings.md
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:eb4758f3183ab6a481e1c1c2b21d9fd673c782de31bf3cdca409b1ea7e79a9c1
 local_deployed_files:
 - .agents/skills/gh-github-workflow
 - .agents/skills/gh-github-workflow/SKILL.md
@@ -469,6 +487,7 @@ local_deployed_files:
 - .agents/skills/pr-review-loop
 - .agents/skills/pr-review-loop/SKILL.md
 - .agents/skills/pr-review-loop/scripts/pr-review-loop.py
+- .claude/agents/marketplace-listings.md
 - .claude/skills/gh-github-workflow
 - .claude/skills/gh-github-workflow/SKILL.md
 - .claude/skills/home-assistant-env
@@ -480,6 +499,7 @@ local_deployed_files:
 - .claude/skills/pr-review-loop
 - .claude/skills/pr-review-loop/SKILL.md
 - .claude/skills/pr-review-loop/scripts/pr-review-loop.py
+- .opencode/agents/marketplace-listings.md
 local_deployed_file_hashes:
   .agents/skills/gh-github-workflow/SKILL.md: sha256:18bf7a98a51df8cc2810c8767382bed77c1a4db3cd9151660e224ba71cf54a17
   .agents/skills/home-assistant-env/SKILL.md: sha256:91c12073b13974f5fed12088c4874149445f55a551916f8ed8f99a24a60ea858
@@ -487,9 +507,11 @@ local_deployed_file_hashes:
   .agents/skills/organize-tax-docs-canada/SKILL.md: sha256:7d4b474f7682d04b61cdf5666daa3b77c19e5032b3443366d6810d96e1fa28e5
   .agents/skills/pr-review-loop/SKILL.md: sha256:818027524c1360d7d7435e775c02b8c70503e7c18fcc382b5eca047862038bce
   .agents/skills/pr-review-loop/scripts/pr-review-loop.py: sha256:5b1f036348d05b30d5ba4cd89b61207d495df0a21a4f89e42ea42de677291854
+  .claude/agents/marketplace-listings.md: sha256:eb4758f3183ab6a481e1c1c2b21d9fd673c782de31bf3cdca409b1ea7e79a9c1
   .claude/skills/gh-github-workflow/SKILL.md: sha256:18bf7a98a51df8cc2810c8767382bed77c1a4db3cd9151660e224ba71cf54a17
   .claude/skills/home-assistant-env/SKILL.md: sha256:91c12073b13974f5fed12088c4874149445f55a551916f8ed8f99a24a60ea858
   .claude/skills/marketplace-listings/SKILL.md: sha256:6b4f88cb6644bbe3bf6f75eb1b20a0177318492f748ca5b5cdd0fc7319468237
   .claude/skills/organize-tax-docs-canada/SKILL.md: sha256:7d4b474f7682d04b61cdf5666daa3b77c19e5032b3443366d6810d96e1fa28e5
   .claude/skills/pr-review-loop/SKILL.md: sha256:818027524c1360d7d7435e775c02b8c70503e7c18fcc382b5eca047862038bce
   .claude/skills/pr-review-loop/scripts/pr-review-loop.py: sha256:5b1f036348d05b30d5ba4cd89b61207d495df0a21a4f89e42ea42de677291854
+  .opencode/agents/marketplace-listings.md: sha256:eb4758f3183ab6a481e1c1c2b21d9fd673c782de31bf3cdca409b1ea7e79a9c1
