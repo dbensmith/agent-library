@@ -1,54 +1,495 @@
 lockfile_version: '1'
-generated_at: '2026-06-03T02:17:03.772381+00:00'
-apm_version: 0.16.1
+generated_at: '2026-07-16T15:52:10.071906+00:00'
+apm_version: 0.25.0
 dependencies:
 - repo_url: github/awesome-copilot
+  name: awesome-copilot
   host: github.com
   resolved_commit: 776d84143238cb91f7242665f188887b9e8d2aa9
+  version: unknown
   virtual_path: skills/git-commit
   is_virtual: true
   package_type: claude_skill
   deployed_files:
   - .agents/skills/git-commit
+  - .agents/skills/git-commit/SKILL.md
+  - .claude/skills/git-commit
+  - .claude/skills/git-commit/SKILL.md
+  deployed_file_hashes:
+    .agents/skills/git-commit/SKILL.md: sha256:554d1a3c6d95f15bc1170160659ecdc9a9958b64f377f3988941b672c249b13f
+    .claude/skills/git-commit/SKILL.md: sha256:554d1a3c6d95f15bc1170160659ecdc9a9958b64f377f3988941b672c249b13f
   content_hash: sha256:2607fc60629b82b257136dd2a7a373f0a4466c0b49df7746d845d59313c99b21
 - repo_url: github/awesome-copilot
+  name: awesome-copilot
   host: github.com
   resolved_commit: 776d84143238cb91f7242665f188887b9e8d2aa9
+  version: unknown
   virtual_path: skills/make-repo-contribution
   is_virtual: true
   package_type: claude_skill
   deployed_files:
   - .agents/skills/make-repo-contribution
+  - .agents/skills/make-repo-contribution/SKILL.md
+  - .agents/skills/make-repo-contribution/assets/issue-template.md
+  - .agents/skills/make-repo-contribution/assets/pr-template.md
+  - .claude/skills/make-repo-contribution
+  - .claude/skills/make-repo-contribution/SKILL.md
+  - .claude/skills/make-repo-contribution/assets/issue-template.md
+  - .claude/skills/make-repo-contribution/assets/pr-template.md
+  deployed_file_hashes:
+    .agents/skills/make-repo-contribution/SKILL.md: sha256:8452ae255064604f38942a920ff92bd05a6a4d5bcd0b94ad58b13b07d1abd1b7
+    .agents/skills/make-repo-contribution/assets/issue-template.md: sha256:82a8a9847134450248f2b2d4e7104cdb2ed764ce3407745c7c443bdb47bb5761
+    .agents/skills/make-repo-contribution/assets/pr-template.md: sha256:90a6f48c16217a9dd87dd85c1bb345fd29f0edbb4a8d80bcda1c51ecf5cb402b
+    .claude/skills/make-repo-contribution/SKILL.md: sha256:8452ae255064604f38942a920ff92bd05a6a4d5bcd0b94ad58b13b07d1abd1b7
+    .claude/skills/make-repo-contribution/assets/issue-template.md: sha256:82a8a9847134450248f2b2d4e7104cdb2ed764ce3407745c7c443bdb47bb5761
+    .claude/skills/make-repo-contribution/assets/pr-template.md: sha256:90a6f48c16217a9dd87dd85c1bb345fd29f0edbb4a8d80bcda1c51ecf5cb402b
   content_hash: sha256:fb32b7ff09809454fa8eff8ca6404993971eef43b12ff3ccf8ced99d91b7ae92
 - repo_url: github/awesome-copilot
+  name: awesome-copilot
   host: github.com
   resolved_commit: 776d84143238cb91f7242665f188887b9e8d2aa9
+  version: unknown
   virtual_path: skills/review-and-refactor
   is_virtual: true
   package_type: claude_skill
   deployed_files:
   - .agents/skills/review-and-refactor
+  - .agents/skills/review-and-refactor/SKILL.md
+  - .claude/skills/review-and-refactor
+  - .claude/skills/review-and-refactor/SKILL.md
+  deployed_file_hashes:
+    .agents/skills/review-and-refactor/SKILL.md: sha256:95b48ed4b137777ddc87b77cb0873ed7f485141a517825e71af1a984cf5a6cd6
+    .claude/skills/review-and-refactor/SKILL.md: sha256:95b48ed4b137777ddc87b77cb0873ed7f485141a517825e71af1a984cf5a6cd6
   content_hash: sha256:9236d06a1500089ddb46975b866e9a63478e502afe7095b1980c618678a7c7fe
 - repo_url: upstash/context7
+  name: context7
   host: github.com
   resolved_commit: c436700959bf0c277aa02c57195b5a24778cf8aa
+  version: unknown
   virtual_path: skills/find-docs
   is_virtual: true
   package_type: claude_skill
   deployed_files:
   - .agents/skills/find-docs
+  - .agents/skills/find-docs/SKILL.md
+  - .claude/skills/find-docs
+  - .claude/skills/find-docs/SKILL.md
+  deployed_file_hashes:
+    .agents/skills/find-docs/SKILL.md: sha256:a6483e5c3f37fb1659f4963926a78b97d4e1632f75f9bcc2bbc8a5698253de35
+    .claude/skills/find-docs/SKILL.md: sha256:a6483e5c3f37fb1659f4963926a78b97d4e1632f75f9bcc2bbc8a5698253de35
   content_hash: sha256:0210767e57873317edc8b91783a2f1b74eb9bbdd2139bd14e9129e9a0bbc2dd6
-- repo_url: yldgio/codereview-skills
-  host: github.com
-  resolved_commit: f0b07716f481157609f1e3efde9f678d9911c87a
-  virtual_path: skills/gh-cli
-  is_virtual: true
-  package_type: claude_skill
-  deployed_files:
-  - .agents/skills/gh-cli
-  content_hash: sha256:abdfdd485c69d9fdfd016bf880b67b70614a30959502b4d59d532491d14b5bf8
+deployments:
+- kind: project-relative
+  target: agents
+  value: .agents/skills/find-docs
+  runtime: null
+  scope: project
+  owners:
+  - upstash/context7/skills/find-docs
+  active_owner: upstash/context7/skills/find-docs
+  content_hash: null
+- kind: project-relative
+  target: agents
+  value: .agents/skills/find-docs/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - upstash/context7/skills/find-docs
+  active_owner: upstash/context7/skills/find-docs
+  content_hash: sha256:a6483e5c3f37fb1659f4963926a78b97d4e1632f75f9bcc2bbc8a5698253de35
+- kind: project-relative
+  target: agents
+  value: .agents/skills/gh-github-workflow
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: null
+- kind: project-relative
+  target: agents
+  value: .agents/skills/gh-github-workflow/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:18bf7a98a51df8cc2810c8767382bed77c1a4db3cd9151660e224ba71cf54a17
+- kind: project-relative
+  target: agents
+  value: .agents/skills/git-commit
+  runtime: null
+  scope: project
+  owners:
+  - github/awesome-copilot/skills/git-commit
+  active_owner: github/awesome-copilot/skills/git-commit
+  content_hash: null
+- kind: project-relative
+  target: agents
+  value: .agents/skills/git-commit/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - github/awesome-copilot/skills/git-commit
+  active_owner: github/awesome-copilot/skills/git-commit
+  content_hash: sha256:554d1a3c6d95f15bc1170160659ecdc9a9958b64f377f3988941b672c249b13f
+- kind: project-relative
+  target: agents
+  value: .agents/skills/home-assistant-env
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: null
+- kind: project-relative
+  target: agents
+  value: .agents/skills/home-assistant-env/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:91c12073b13974f5fed12088c4874149445f55a551916f8ed8f99a24a60ea858
+- kind: project-relative
+  target: agents
+  value: .agents/skills/make-repo-contribution
+  runtime: null
+  scope: project
+  owners:
+  - github/awesome-copilot/skills/make-repo-contribution
+  active_owner: github/awesome-copilot/skills/make-repo-contribution
+  content_hash: null
+- kind: project-relative
+  target: agents
+  value: .agents/skills/make-repo-contribution/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - github/awesome-copilot/skills/make-repo-contribution
+  active_owner: github/awesome-copilot/skills/make-repo-contribution
+  content_hash: sha256:8452ae255064604f38942a920ff92bd05a6a4d5bcd0b94ad58b13b07d1abd1b7
+- kind: project-relative
+  target: agents
+  value: .agents/skills/make-repo-contribution/assets/issue-template.md
+  runtime: null
+  scope: project
+  owners:
+  - github/awesome-copilot/skills/make-repo-contribution
+  active_owner: github/awesome-copilot/skills/make-repo-contribution
+  content_hash: sha256:82a8a9847134450248f2b2d4e7104cdb2ed764ce3407745c7c443bdb47bb5761
+- kind: project-relative
+  target: agents
+  value: .agents/skills/make-repo-contribution/assets/pr-template.md
+  runtime: null
+  scope: project
+  owners:
+  - github/awesome-copilot/skills/make-repo-contribution
+  active_owner: github/awesome-copilot/skills/make-repo-contribution
+  content_hash: sha256:90a6f48c16217a9dd87dd85c1bb345fd29f0edbb4a8d80bcda1c51ecf5cb402b
+- kind: project-relative
+  target: agents
+  value: .agents/skills/marketplace-listings
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: null
+- kind: project-relative
+  target: agents
+  value: .agents/skills/marketplace-listings/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:6b4f88cb6644bbe3bf6f75eb1b20a0177318492f748ca5b5cdd0fc7319468237
+- kind: project-relative
+  target: agents
+  value: .agents/skills/organize-tax-docs-canada
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: null
+- kind: project-relative
+  target: agents
+  value: .agents/skills/organize-tax-docs-canada/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:7d4b474f7682d04b61cdf5666daa3b77c19e5032b3443366d6810d96e1fa28e5
+- kind: project-relative
+  target: agents
+  value: .agents/skills/pr-review-loop
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: null
+- kind: project-relative
+  target: agents
+  value: .agents/skills/pr-review-loop/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:818027524c1360d7d7435e775c02b8c70503e7c18fcc382b5eca047862038bce
+- kind: project-relative
+  target: agents
+  value: .agents/skills/pr-review-loop/scripts/pr-review-loop.py
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:5b1f036348d05b30d5ba4cd89b61207d495df0a21a4f89e42ea42de677291854
+- kind: project-relative
+  target: agents
+  value: .agents/skills/review-and-refactor
+  runtime: null
+  scope: project
+  owners:
+  - github/awesome-copilot/skills/review-and-refactor
+  active_owner: github/awesome-copilot/skills/review-and-refactor
+  content_hash: null
+- kind: project-relative
+  target: agents
+  value: .agents/skills/review-and-refactor/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - github/awesome-copilot/skills/review-and-refactor
+  active_owner: github/awesome-copilot/skills/review-and-refactor
+  content_hash: sha256:95b48ed4b137777ddc87b77cb0873ed7f485141a517825e71af1a984cf5a6cd6
+- kind: project-relative
+  target: claude
+  value: .claude/skills/find-docs
+  runtime: null
+  scope: project
+  owners:
+  - upstash/context7/skills/find-docs
+  active_owner: upstash/context7/skills/find-docs
+  content_hash: null
+- kind: project-relative
+  target: claude
+  value: .claude/skills/find-docs/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - upstash/context7/skills/find-docs
+  active_owner: upstash/context7/skills/find-docs
+  content_hash: sha256:a6483e5c3f37fb1659f4963926a78b97d4e1632f75f9bcc2bbc8a5698253de35
+- kind: project-relative
+  target: claude
+  value: .claude/skills/gh-github-workflow
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: null
+- kind: project-relative
+  target: claude
+  value: .claude/skills/gh-github-workflow/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:18bf7a98a51df8cc2810c8767382bed77c1a4db3cd9151660e224ba71cf54a17
+- kind: project-relative
+  target: claude
+  value: .claude/skills/git-commit
+  runtime: null
+  scope: project
+  owners:
+  - github/awesome-copilot/skills/git-commit
+  active_owner: github/awesome-copilot/skills/git-commit
+  content_hash: null
+- kind: project-relative
+  target: claude
+  value: .claude/skills/git-commit/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - github/awesome-copilot/skills/git-commit
+  active_owner: github/awesome-copilot/skills/git-commit
+  content_hash: sha256:554d1a3c6d95f15bc1170160659ecdc9a9958b64f377f3988941b672c249b13f
+- kind: project-relative
+  target: claude
+  value: .claude/skills/home-assistant-env
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: null
+- kind: project-relative
+  target: claude
+  value: .claude/skills/home-assistant-env/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:91c12073b13974f5fed12088c4874149445f55a551916f8ed8f99a24a60ea858
+- kind: project-relative
+  target: claude
+  value: .claude/skills/make-repo-contribution
+  runtime: null
+  scope: project
+  owners:
+  - github/awesome-copilot/skills/make-repo-contribution
+  active_owner: github/awesome-copilot/skills/make-repo-contribution
+  content_hash: null
+- kind: project-relative
+  target: claude
+  value: .claude/skills/make-repo-contribution/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - github/awesome-copilot/skills/make-repo-contribution
+  active_owner: github/awesome-copilot/skills/make-repo-contribution
+  content_hash: sha256:8452ae255064604f38942a920ff92bd05a6a4d5bcd0b94ad58b13b07d1abd1b7
+- kind: project-relative
+  target: claude
+  value: .claude/skills/make-repo-contribution/assets/issue-template.md
+  runtime: null
+  scope: project
+  owners:
+  - github/awesome-copilot/skills/make-repo-contribution
+  active_owner: github/awesome-copilot/skills/make-repo-contribution
+  content_hash: sha256:82a8a9847134450248f2b2d4e7104cdb2ed764ce3407745c7c443bdb47bb5761
+- kind: project-relative
+  target: claude
+  value: .claude/skills/make-repo-contribution/assets/pr-template.md
+  runtime: null
+  scope: project
+  owners:
+  - github/awesome-copilot/skills/make-repo-contribution
+  active_owner: github/awesome-copilot/skills/make-repo-contribution
+  content_hash: sha256:90a6f48c16217a9dd87dd85c1bb345fd29f0edbb4a8d80bcda1c51ecf5cb402b
+- kind: project-relative
+  target: claude
+  value: .claude/skills/marketplace-listings
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: null
+- kind: project-relative
+  target: claude
+  value: .claude/skills/marketplace-listings/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:6b4f88cb6644bbe3bf6f75eb1b20a0177318492f748ca5b5cdd0fc7319468237
+- kind: project-relative
+  target: claude
+  value: .claude/skills/organize-tax-docs-canada
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: null
+- kind: project-relative
+  target: claude
+  value: .claude/skills/organize-tax-docs-canada/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:7d4b474f7682d04b61cdf5666daa3b77c19e5032b3443366d6810d96e1fa28e5
+- kind: project-relative
+  target: claude
+  value: .claude/skills/pr-review-loop
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: null
+- kind: project-relative
+  target: claude
+  value: .claude/skills/pr-review-loop/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:818027524c1360d7d7435e775c02b8c70503e7c18fcc382b5eca047862038bce
+- kind: project-relative
+  target: claude
+  value: .claude/skills/pr-review-loop/scripts/pr-review-loop.py
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:5b1f036348d05b30d5ba4cd89b61207d495df0a21a4f89e42ea42de677291854
+- kind: project-relative
+  target: claude
+  value: .claude/skills/review-and-refactor
+  runtime: null
+  scope: project
+  owners:
+  - github/awesome-copilot/skills/review-and-refactor
+  active_owner: github/awesome-copilot/skills/review-and-refactor
+  content_hash: null
+- kind: project-relative
+  target: claude
+  value: .claude/skills/review-and-refactor/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - github/awesome-copilot/skills/review-and-refactor
+  active_owner: github/awesome-copilot/skills/review-and-refactor
+  content_hash: sha256:95b48ed4b137777ddc87b77cb0873ed7f485141a517825e71af1a984cf5a6cd6
 local_deployed_files:
+- .agents/skills/gh-github-workflow
+- .agents/skills/gh-github-workflow/SKILL.md
 - .agents/skills/home-assistant-env
+- .agents/skills/home-assistant-env/SKILL.md
 - .agents/skills/marketplace-listings
+- .agents/skills/marketplace-listings/SKILL.md
 - .agents/skills/organize-tax-docs-canada
-- .agents/skills/uv
+- .agents/skills/organize-tax-docs-canada/SKILL.md
+- .agents/skills/pr-review-loop
+- .agents/skills/pr-review-loop/SKILL.md
+- .agents/skills/pr-review-loop/scripts/pr-review-loop.py
+- .claude/skills/gh-github-workflow
+- .claude/skills/gh-github-workflow/SKILL.md
+- .claude/skills/home-assistant-env
+- .claude/skills/home-assistant-env/SKILL.md
+- .claude/skills/marketplace-listings
+- .claude/skills/marketplace-listings/SKILL.md
+- .claude/skills/organize-tax-docs-canada
+- .claude/skills/organize-tax-docs-canada/SKILL.md
+- .claude/skills/pr-review-loop
+- .claude/skills/pr-review-loop/SKILL.md
+- .claude/skills/pr-review-loop/scripts/pr-review-loop.py
+local_deployed_file_hashes:
+  .agents/skills/gh-github-workflow/SKILL.md: sha256:18bf7a98a51df8cc2810c8767382bed77c1a4db3cd9151660e224ba71cf54a17
+  .agents/skills/home-assistant-env/SKILL.md: sha256:91c12073b13974f5fed12088c4874149445f55a551916f8ed8f99a24a60ea858
+  .agents/skills/marketplace-listings/SKILL.md: sha256:6b4f88cb6644bbe3bf6f75eb1b20a0177318492f748ca5b5cdd0fc7319468237
+  .agents/skills/organize-tax-docs-canada/SKILL.md: sha256:7d4b474f7682d04b61cdf5666daa3b77c19e5032b3443366d6810d96e1fa28e5
+  .agents/skills/pr-review-loop/SKILL.md: sha256:818027524c1360d7d7435e775c02b8c70503e7c18fcc382b5eca047862038bce
+  .agents/skills/pr-review-loop/scripts/pr-review-loop.py: sha256:5b1f036348d05b30d5ba4cd89b61207d495df0a21a4f89e42ea42de677291854
+  .claude/skills/gh-github-workflow/SKILL.md: sha256:18bf7a98a51df8cc2810c8767382bed77c1a4db3cd9151660e224ba71cf54a17
+  .claude/skills/home-assistant-env/SKILL.md: sha256:91c12073b13974f5fed12088c4874149445f55a551916f8ed8f99a24a60ea858
+  .claude/skills/marketplace-listings/SKILL.md: sha256:6b4f88cb6644bbe3bf6f75eb1b20a0177318492f748ca5b5cdd0fc7319468237
+  .claude/skills/organize-tax-docs-canada/SKILL.md: sha256:7d4b474f7682d04b61cdf5666daa3b77c19e5032b3443366d6810d96e1fa28e5
+  .claude/skills/pr-review-loop/SKILL.md: sha256:818027524c1360d7d7435e775c02b8c70503e7c18fcc382b5eca047862038bce
+  .claude/skills/pr-review-loop/scripts/pr-review-loop.py: sha256:5b1f036348d05b30d5ba4cd89b61207d495df0a21a4f89e42ea42de677291854

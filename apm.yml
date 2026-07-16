@@ -8,11 +8,12 @@ dependencies:
     - github/awesome-copilot/skills/make-repo-contribution
     - github/awesome-copilot/skills/review-and-refactor
     - upstash/context7/skills/find-docs
-    - yldgio/codereview-skills/skills/gh-cli
   mcp: []
 includes: auto
 devDependencies:
   apm: []
 scripts: { start: apm compile && echo 'agent-library ready. Skills in .agents/skills/' }
 targets:
-  - all
+  - antigravity
+  - claude
+  - opencode
