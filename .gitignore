@@ -10,6 +10,7 @@ Thumbs.db
 
 # Agents
 .agents/
+.claude/
 .gemini/
 .opencode/
 
