@@ -1,16 +1,19 @@
 # Dependencies
-node_modules/
-.venv/
 __pycache__/
+.venv/
+apm_modules/
+node_modules/
 
 # OS files
 .DS_Store
 Thumbs.db
 
-# Environment and Secrets
+# Agents
+.agents/
+.gemini/
+.opencode/
+
+# Secrets
 .env
 .env.local
 *.log
-
-# APM
-apm_modules/
